@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="720" viewBox="0 0 1200 720">
+  <defs>
+    <style>
+      .title { font: 700 26px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #0b1220; }
+      .subtitle { font: 400 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #334155; }
+      .label { font: 600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #0b1220; }
+      .text { font: 400 13px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; fill: #0b1220; }
+      .muted { fill: #475569; }
+      .box { fill: #ffffff; stroke: #0f172a; stroke-width: 2; rx: 14; }
+      .boxSoft { fill: #f8fafc; stroke: #0f172a; stroke-width: 2; rx: 14; }
+      .boxBlue { fill: #eff6ff; stroke: #1d4ed8; stroke-width: 2; rx: 14; }
+      .boxGreen { fill: #ecfdf5; stroke: #047857; stroke-width: 2; rx: 14; }
+      .arrow { stroke: #0f172a; stroke-width: 2.5; fill: none; marker-end: url(#arrowHead); }
+      .arrowSoft { stroke: #334155; stroke-width: 2; fill: none; marker-end: url(#arrowHeadSoft); }
+      .dash { stroke-dasharray: 6 6; }
+    </style>
+
+    <marker id="arrowHead" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#0f172a" />
+    </marker>
+    <marker id="arrowHeadSoft" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#334155" />
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="1200" height="720" fill="#ffffff" />
+
+  <!-- Header -->
+  <text x="60" y="70" class="title">AI System — multi-agent collaboration flow</text>
+  <text x="60" y="95" class="subtitle">Isolation + Work Packets + Checkpoints + Evidence + Reporting (daily + inbox merge)</text>
+
+  <!-- Human -->
+  <rect x="60" y="130" width="1080" height="80" class="boxSoft" />
+  <text x="90" y="165" class="label">Human operator</text>
+  <text x="90" y="190" class="text muted">Starts chats, pastes system prompts, chooses project, approves checkpoints.</text>
+
+  <!-- Chats -->
+  <rect x="60" y="250" width="520" height="220" class="boxBlue" />
+  <text x="90" y="285" class="label">Chat A — Agent A (Strategy / QA / Orchestrator)</text>
+  <text x="90" y="315" class="text">- Reads project status + constraints</text>
+  <text x="90" y="338" class="text">- Writes Work Packets (authorization)</text>
+  <text x="90" y="361" class="text">- Reviews checkpoints + evidence</text>
+  <text x="90" y="384" class="text">- Merges inbox → daily report (canonical log)</text>
+
+  <rect x="620" y="250" width="520" height="220" class="box" />
+  <text x="650" y="285" class="label">Chats B/C/D — Implementers (separate chats)</text>
+  <text x="650" y="315" class="text">Chat B — Agent B: code + verification + proof</text>
+  <text x="650" y="338" class="text">Chat C — Agent C: content/SEO artifacts (no code)</text>
+  <text x="650" y="361" class="text">Chat D — Agent D: funnel/offer specs (no code)</text>
+  <text x="650" y="396" class="text muted">Hard rule: one agent per chat (no mixing prompts).</text>
+
+  <!-- Project workspace -->
+  <rect x="60" y="510" width="1080" height="170" class="boxGreen" />
+  <text x="90" y="545" class="label">Project workspace (per project)</text>
+  <text x="90" y="575" class="text">- <tspan font-weight="600">PROJECT_STATUS.md</tspan> (source of truth)</text>
+  <text x="90" y="598" class="text">- <tspan font-weight="600">REPORTS_ROOT/daily/</tspan> (Agent A only)</text>
+  <text x="90" y="621" class="text">- <tspan font-weight="600">REPORTS_ROOT/inbox/</tspan> (Implementers append-only)</text>
+  <text x="90" y="644" class="text">- shared-tools/ + templates + assets (optional)</text>
+
+  <!-- Arrows -->
+  <path d="M 600 210 L 320 250" class="arrow" />
+  <path d="M 600 210 L 880 250" class="arrow" />
+
+  <path d="M 580 340 L 620 340" class="arrow" />
+  <text x="515" y="330" class="subtitle">Work Packets</text>
+
+  <path d="M 320 470 L 320 510" class="arrowSoft" />
+  <text x="200" y="505" class="subtitle">daily report (Agent A)</text>
+
+  <path d="M 880 470 L 880 510" class="arrowSoft" />
+  <text x="780" y="505" class="subtitle">inbox updates (B/C/D)</text>
+
+  <!-- Merge arrow -->
+  <path d="M 880 600 C 760 600, 740 600, 580 600" class="arrowSoft dash" />
+  <text x="630" y="590" class="subtitle">Agent A merges inbox → daily</text>
+
+  <!-- Footer note -->
+  <text x="60" y="705" class="subtitle">Tip: keep everything self-contained and linkable; avoid project-specific identifiers in published prompts.</text>
+</svg>

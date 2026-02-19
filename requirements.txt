@@ -1,0 +1,8 @@
+# This repo intentionally uses Python stdlib only (no third-party pip dependencies).
+#
+# Operational requirement (to run the multi-agent workflow as intended):
+# - An LLM chat/prompt interface that supports system prompts (e.g. Cursor, ChatGPT, Claude, etc.)
+#
+# Local tooling requirement:
+# - Python 3.x (stdlib only)
+

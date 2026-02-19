@@ -1,0 +1,12 @@
+Escalation triggers (template)
+
+Escalate to the human owner when you see:
+- Repeated missing evidence (“ghost work”)
+- Repeated scope violations (editing forbidden files / unapproved directories)
+- Conflicting instructions across agents
+- Environment/tooling failures that block execution across commands
+
+Escalation should include:
+- the exact error / evidence missing
+- the impacted Work Packet title + timestamp
+- the smallest decision needed to unblock
