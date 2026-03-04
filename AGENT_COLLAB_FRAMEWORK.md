@@ -87,6 +87,46 @@ If an Agent C-owned Work Packet is active (i.e., `Implementer: C` exists in TODA
 
 - Lane D (Agent D) is non-code: it MUST NOT run dev servers or perform code edits. Any D packet must be docs/spec or production verification-only, per its system prompt.
 
+### Implementer Lanes vs Internal Workers (HARD)
+
+Definitions:
+- **Implementer lane** = a global agent identity that may appear in:
+  - `Implementer: <AGENT_INSTANCE_ID>` in Work Packets
+  - `reports/inbox/Agent<AGENT_INSTANCE_ID>_<YYYY-MM-DD>.md`
+  - `Status At A Glance` / approval ownership references
+- **Internal worker** = an ephemeral helper created by the currently assigned Implementer for local execution inside that Implementer's active Work Packet.
+
+Namespace separation (non-bypassable):
+- Reserved lane namespace (global identities): `^(A|B|C|D)(-[A-Za-z0-9]+)?$`
+- Internal workers MUST NOT use reserved lane namespace.
+- Internal worker ID format (local-only): `^IW-[0-9]{2}$` (examples: `IW-01`, `IW-02`).
+
+Hard rules:
+1) Internal workers are a private execution mechanism inside the parent agent; they are not separate agent instances and must not be initialized as standalone agents.
+2) Internal workers are never directly assignable by Agent A.
+3) Internal workers MUST NOT appear as:
+   - `Implementer:` values in Work Packets
+   - rows in `### Status At A Glance`
+   - approval owners in `### Approval Ledger`
+   - inbox filenames
+4) Internal workers MUST NOT write directly to `reports/daily/*` or `reports/inbox/*`.
+5) Internal workers MUST NOT create or reference any filename matching:
+   - `reports/inbox/Agent*`
+   - `reports/daily/*`
+6) Parent Implementer remains solely accountable for:
+   - scope compliance
+   - resource locks
+   - evidence quality
+   - final status and closure language
+
+Collision-prevention rule:
+- Tokens like `B-3`, `B-4`, `C-2`, `D-2` are reserved for human-initialized standalone lanes only.
+- Using any reserved lane token for an internal worker is a protocol violation.
+
+Violation response:
+- If an internal worker is exposed as a lane identity or writes direct report artifacts, mark:
+  `BLOCKED: Internal worker identity leaked into lane namespace.`
+
 All agents must keep changes additive and align with the verification checklist in `PROJECT_STATUS.md` §7.
 
 Execution Gating Invariant — Questions

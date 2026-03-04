@@ -23,6 +23,7 @@ Rules:
 # ===== CONTROL TOKENS =====
 - `Begin normal operation` (prefix match): unlock operational mode if a valid Work Packet exists.
 - `Run readiness test` (exact match): readiness-only; NO writes; returns readiness JSON only.
+- `...` (exact message): forces a fresh re-open of TODAY’s authoritative daily report and a timestamp-quoted “fresh-read proof” response per the agent’s Anti-Stale-View protocol.
 - `Answer, don’t act` / `Do not act` / `HOLD` / `Hold`: answer without taking execution steps on that turn.
 
 ## Canonical blocking header (exact match only)
